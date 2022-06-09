@@ -1,0 +1,28 @@
+server:
+  port: 8889
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 20MB
+  main:
+    banner-mode: "off"
+    allow-circular-references: true
+  application:
+    name: blog_admin
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:13306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: psx0211
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      table-prefix: ms_
+    banner: false
