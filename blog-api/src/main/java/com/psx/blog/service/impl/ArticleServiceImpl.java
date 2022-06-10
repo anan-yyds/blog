@@ -145,7 +145,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         article.setSummary(articleParam.getSummary());
         article.setCommentCounts(0);
         article.setCreateDate(System.currentTimeMillis());
-        article.setCategoryId(articleParam.getCategory().getId());
+        article.setCategoryId(Long.parseLong(articleParam.getCategory().getId()));
         //插入之后会生成文章id
         articleMapper.insert(article);
         List<TagVo> tags = articleParam.getTags();
@@ -153,8 +153,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             for(TagVo tag : tags){
                 Long articleId = article.getId();
                 ArticleTag articleTag = new ArticleTag();
-                articleTag.setTagId(tag.getId());
+                articleTag.setTagId(Long.parseLong(tag.getId()));
                 articleTag.setArticleId(articleId);
+                articleTagMapper.insert(articleTag);
             }
         }
         ArticleBody articleBody = new ArticleBody();
@@ -185,7 +186,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     private ArticleVo copy(Article article,boolean isTag,boolean isAuthor,boolean isBody,boolean isCategory){
         ArticleVo articleVo = new ArticleVo();
         BeanUtils.copyProperties(article,articleVo);
-
+        articleVo.setId(String.valueOf(article.getId()));
         articleVo.setCreateDate(new DateTime(article.getCreateDate()).toString("yyyy-MM-dd HH:mm"));
         if(isTag){
             Long authorId = article.getId();

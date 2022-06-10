@@ -62,6 +62,7 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
     public TagVo copy(Tag tag){
         TagVo tagVo = new TagVo();
         BeanUtils.copyProperties(tag,tagVo);
+        tagVo.setId(String.valueOf(tag.getId()));
         return tagVo;
     }
     public List<TagVo> copyList(List<Tag> tagList){

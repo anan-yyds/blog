@@ -53,6 +53,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     public CategoryVo copy(Category category){
         CategoryVo categoryVo = new CategoryVo();
         BeanUtils.copyProperties(category,categoryVo);
+        categoryVo.setId(String.valueOf(category.getId()));
         return categoryVo;
     }
     public List<CategoryVo> copyList(List<Category> categoryList){

@@ -31,6 +31,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             sysUser.setNickname("红温选手");
         }
         UserVo userVo = new UserVo();
+        userVo.setId(String.valueOf(sysUser.getId()));
         BeanUtils.copyProperties(sysUser,userVo);
         return userVo;
     }
@@ -66,7 +67,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         LoginUserVo loginUserVo = new LoginUserVo();
         loginUserVo.setAccount(sysUser.getAccount());
         loginUserVo.setAvatar(sysUser.getAvatar());
-        loginUserVo.setId(sysUser.getId());
+        loginUserVo.setId(String.valueOf(sysUser.getId()));
         loginUserVo.setNickname(sysUser.getNickname());
         return R.success(loginUserVo);
     }

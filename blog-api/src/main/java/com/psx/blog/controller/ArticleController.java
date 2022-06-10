@@ -2,6 +2,7 @@ package com.psx.blog.controller;
 
 import com.psx.blog.common.R;
 import com.psx.blog.common.aop.LogAnnotation;
+import com.psx.blog.common.cache.Cache;
 import com.psx.blog.service.ArticleService;
 import com.psx.blog.vo.param.ArticleParam;
 import com.psx.blog.vo.param.PageParam;
@@ -31,18 +32,21 @@ public class ArticleController {
         return articleService.page(params);
     }
     @PostMapping("hot")
+    @Cache(expire = 5 * 60 * 1000,name = "hot_article")
     public R<List> hotArticle(){
         int limit = 5;
         List list = articleService.hotArticle(limit);
         return R.success(list);
     }
     @PostMapping("new")
+    @Cache(expire = 5 * 60 * 1000,name = "news_article")
     public R<List> newArticle(){
         int limit = 5;
         List list = articleService.newArticle(limit);
         return R.success(list);
     }
     @PostMapping("listArchives")
+    @Cache(expire = 5 * 60 * 1000,name = "list_article")
     public R<List> listArchives(){
         List list = articleService.listArchives();
         return R.success(list);

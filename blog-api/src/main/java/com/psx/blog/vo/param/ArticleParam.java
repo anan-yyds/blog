@@ -1,5 +1,7 @@
 package com.psx.blog.vo.param;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.psx.blog.vo.CategoryVo;
 import com.psx.blog.vo.TagVo;
 import lombok.Data;
@@ -7,8 +9,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ArticleParam {	
-	
+public class ArticleParam {
+    
     private Long id;	
 	
     private ArticleBodyParam body;	
